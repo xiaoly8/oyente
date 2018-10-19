@@ -9,7 +9,6 @@ FROM ubuntu:bionic
 
 LABEL maintainer "Luong Nguyen <luongnt.58@gmail.com>"
 
-SHELL ["/bin/bash", "-c", "-l"]
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y wget unzip python-virtualenv git build-essential software-properties-common curl
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
