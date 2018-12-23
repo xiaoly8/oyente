@@ -40,12 +40,5 @@ COPY --from=geth /usr/local/bin/evm /usr/local/bin/evm
 COPY --from=solc /usr/bin/solc /usr/bin/solc
 
 COPY . /oyente/
-RUN wget -O ruby-install-0.6.1.tar.gz https://github.com/postmodern/ruby-install/archive/v0.6.1.tar.gz
-RUN tar -xzvf ruby-install-0.6.1.tar.gz
-RUN cd ruby-install-0.6.1/ && make install
-RUN ruby-install --system ruby 2.4.4
-WORKDIR /oyente/web
-RUN ./bin/yarn install && gem install bundler && bundle install --with development
 
-EXPOSE 3000
-CMD ["./bin/rails", "server"]
+CMD "/bin/bash"
