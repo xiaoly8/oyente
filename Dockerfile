@@ -44,4 +44,7 @@ COPY --from=solc /usr/bin/solc /usr/bin/solc
 
 COPY . /oyente/
 
+RUN useradd -m oyente
+USER oyente
+
 CMD "/bin/bash"
