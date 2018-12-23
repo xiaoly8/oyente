@@ -150,6 +150,7 @@ def main():
     parser.add_argument( "-gb",  "--globalblockchain",       help="Integrate with the global ethereum blockchain", action="store_true")
     parser.add_argument( "-ce",  "--compilation-error",      help="Display compilation errors", action="store_true")
     parser.add_argument( "-gtc", "--generate-test-cases",    help="Generate test cases each branch of symbolic execution tree", action="store_true")
+    parser.add_argument( "-gas", "--output-path-gas",    help="Output the gas usage of each path", action="store_true")
     parser.add_argument( "-sjo", "--standard-json-output",   help="Support Standard JSON output", action="store_true")
 
     args = parser.parse_args()
@@ -179,6 +180,7 @@ def main():
     global_params.CHECK_ASSERTIONS = 1 if args.assertion else 0
     global_params.DEBUG_MODE = 1 if args.debug else 0
     global_params.GENERATE_TEST_CASES = 1 if args.generate_test_cases else 0
+    global_params.OUTPUT_PATH_GAS = 1 if args.output_path_gas else 0
     global_params.PARALLEL = 1 if args.parallel else 0
 
     if args.depth_limit:

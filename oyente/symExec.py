@@ -643,6 +643,9 @@ def sym_exec_block(params, block, pre_block, depth, func_call, current_func_name
                     no_of_test_cases -= 1
             except Exception as e:
                 pass
+        
+        if global_params.OUTPUT_PATH_GAS:
+            print("path no {}: gas usage {}".format(no_of_test_cases, current_gas_used))
 
         log.debug("TERMINATING A PATH ...")
         display_analysis(analysis)
