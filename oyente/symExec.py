@@ -649,7 +649,7 @@ def sym_exec_block(params, block, pre_block, depth, func_call, current_func_name
             print("path no {}: gas usage {}".format(path_id, current_gas_used))
 
         if global_params.PRINT_PATHS:
-            # log.info("PATH " + str(path_id) + ": " + str(path_conditions_and_vars['path_condition']))
+            log.debug("PATH " + str(path_id) + ": " + str(path_conditions_and_vars['path_condition']))
             # Putting path condition into files since it's too long to be in stdout
             filename = "path-{}.txt".format(path_id)
             with open(filename, 'w') as f:
