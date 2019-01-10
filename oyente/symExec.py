@@ -648,12 +648,17 @@ def sym_exec_block(params, block, pre_block, depth, func_call, current_func_name
         if global_params.OUTPUT_PATH_GAS:
             print("path no {}: gas usage {}".format(path_id, current_gas_used))
 
-        if global_params.PRINT_PATHS:
+        if global_params.PRINT_PATHS is not False :
             log.debug("PATH " + str(path_id) + ": " + str(path_conditions_and_vars['path_condition']))
             # Putting path condition into files since it's too long to be in stdout
             filename = "path-{}.txt".format(path_id)
             with open(filename, 'w') as f:
-                f.write(And(*path_conditions_and_vars['path_condition']).sexpr())
+                if global_params.PRINT_PATHS == 'smt2-complete':
+                    str_content = solver.to_smt2()
+                elif global_params.PRINT_PATHS == 'smt2-path-only':
+                    str_content = And(*path_conditions_and_vars['path_condition']).sexpr()
+
+                f.write(str_content)
 
         log.debug("TERMINATING A PATH ...")
         display_analysis(analysis)
