@@ -644,8 +644,12 @@ def sym_exec_block(params, block, pre_block, depth, func_call, current_func_name
             except Exception as e:
                 pass
         
+        path_id = total_no_of_paths - 1
         if global_params.OUTPUT_PATH_GAS:
-            print("path no {}: gas usage {}".format(no_of_test_cases, current_gas_used))
+            print("path no {}: gas usage {}".format(path_id, current_gas_used))
+
+        if global_params.PRINT_PATHS:
+            log.info("PATH " + str(path_id) + ": " + str(path_conditions_and_vars['path_condition']))
 
         log.debug("TERMINATING A PATH ...")
         display_analysis(analysis)
@@ -2065,11 +2069,11 @@ def detect_time_dependency():
     TIMESTAMP_VAR = "IH_s"
     is_dependant = False
     pcs = []
-    if global_params.PRINT_PATHS:
-        log.info("ALL PATH CONDITIONS")
+    # if global_params.PRINT_PATHS:
+    #     log.info("ALL PATH CONDITIONS")
     for i, cond in enumerate(path_conditions):
-        if global_params.PRINT_PATHS:
-            log.info("PATH " + str(i + 1) + ": " + str(cond))
+        # if global_params.PRINT_PATHS:
+        #     log.info("PATH " + str(i + 1) + ": " + str(cond))
         for j, expr in enumerate(cond):
             if is_expr(expr):
                 if TIMESTAMP_VAR in str(expr) and j in global_problematic_pcs["time_dependency_bug"][i]:
