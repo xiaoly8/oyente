@@ -653,6 +653,9 @@ def sym_exec_block(params, block, pre_block, depth, func_call, current_func_name
             # Putting path condition into files since it's too long to be in stdout
             filename = "path-{}.txt".format(path_id)
             with open(filename, 'w') as f:
+
+                str_content = None
+
                 if global_params.PRINT_PATHS == 'smt2-complete':
                     str_content = solver.to_smt2()
                 elif global_params.PRINT_PATHS == 'smt2-path-only':
@@ -661,8 +664,9 @@ def sym_exec_block(params, block, pre_block, depth, func_call, current_func_name
                     goal = Goal()
                     goal.add(*path_conditions_and_vars['path_condition'])
                     tactic = Tactic('tseitin-cnf')
-                    content = str(tactic(goal))
+                    str_content = str(tactic(goal))
 
+                assert str_content is not None
                 f.write(str_content)
 
         log.debug("TERMINATING A PATH ...")
