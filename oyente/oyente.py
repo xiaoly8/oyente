@@ -138,7 +138,7 @@ def main():
     parser.add_argument( "-e",   "--evm",                    help="Do not remove the .evm file.", action="store_true")
     parser.add_argument( "-w",   "--web",                    help="Run Oyente for web service", action="store_true")
     parser.add_argument( "-j",   "--json",                   help="Redirect results to a json file.", action="store_true")
-    parser.add_argument( "-p",   "--paths",                  help="Output path condition information.", choices=['smt2-complete', 'smt2-path-only'])
+    parser.add_argument( "-p",   "--paths",                  help="Output path condition information.", choices=['smt2-complete', 'smt2-path-only', 'sat-complete'])
     parser.add_argument( "-db",  "--debug",                  help="Display debug information", action="store_true")
     parser.add_argument( "-st",  "--state",                  help="Get input state from state.json", action="store_true")
     parser.add_argument( "-r",   "--report",                 help="Create .report file.", action="store_true")

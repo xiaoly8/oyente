@@ -657,6 +657,11 @@ def sym_exec_block(params, block, pre_block, depth, func_call, current_func_name
                     str_content = solver.to_smt2()
                 elif global_params.PRINT_PATHS == 'smt2-path-only':
                     str_content = And(*path_conditions_and_vars['path_condition']).sexpr()
+                elif global_params.PRINT_PATHS == 'sat-complete':
+                    goal = Goal()
+                    goal.add(*path_conditions_and_vars['path_condition'])
+                    tactic = Tactic('tseitin-cnf')
+                    content = str(tactic(goal))
 
                 f.write(str_content)
 
