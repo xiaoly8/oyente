@@ -653,7 +653,7 @@ def sym_exec_block(params, block, pre_block, depth, func_call, current_func_name
             # Putting path condition into files since it's too long to be in stdout
             filename = "path-{}.txt".format(path_id)
             with open(filename, 'w') as f:
-                f.write(str(path_conditions_and_vars['path_condition']))
+                f.write(And(*path_conditions_and_vars['path_condition']).sexpr())
 
         log.debug("TERMINATING A PATH ...")
         display_analysis(analysis)
