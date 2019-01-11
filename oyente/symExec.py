@@ -664,7 +664,9 @@ def sym_exec_block(params, block, pre_block, depth, func_call, current_func_name
                     goal = Goal()
                     goal.add(*path_conditions_and_vars['path_condition'])
                     tactic = Then('simplify', 'bit-blast', 'tseitin-cnf')
-                    str_content = str(tactic(goal))
+                    subgoal = tactic(goal)
+                    assert len(subgoal) == 1
+                    str_content = str(subgoal[0])
 
                 assert str_content is not None
                 f.write(str_content)
