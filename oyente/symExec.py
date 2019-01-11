@@ -663,7 +663,7 @@ def sym_exec_block(params, block, pre_block, depth, func_call, current_func_name
                 elif global_params.PRINT_PATHS == 'sat-complete':
                     goal = Goal()
                     goal.add(*path_conditions_and_vars['path_condition'])
-                    tactic = Tactic('tseitin-cnf')
+                    tactic = Then('simplify', 'bit-blast', 'tseitin-cnf')
                     str_content = str(tactic(goal))
 
                 assert str_content is not None
