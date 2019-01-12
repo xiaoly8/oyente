@@ -660,14 +660,18 @@ def sym_exec_block(params, block, pre_block, depth, func_call, current_func_name
                     str_content = solver.to_smt2()
                 elif global_params.PRINT_PATHS == 'smt2-path-only':
                     str_content = And(*path_conditions_and_vars['path_condition']).sexpr()
-                elif global_params.PRINT_PATHS == 'sat-complete':
+                elif global_params.PRINT_PATHS in ('sat-complete', 'dimacs-complete'):
                     goal = Goal()
                     goal.add(*path_conditions_and_vars['path_condition'])
                     tactic = Then('simplify', 'bit-blast', 'tseitin-cnf')
                     subgoal = tactic(goal)
                     assert len(subgoal) == 1
-                    str_content = str(subgoal[0])
 
+                    if global_params.PRINT_PATHS == 'sat-complete':
+                        str_content = subgoal[0].sexpr()
+                    elif global_params.PRINT_PATHS == 'dimacs-complete':
+                        str_content = subgoal[0].dimacs()
+                        
                 assert str_content is not None
                 f.write(str_content)
 
