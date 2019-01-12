@@ -31,10 +31,10 @@ RUN update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 2
 RUN pip install requests web3
 RUN npm install npm@latest -g  && npm install n --global && n stable
 
-RUN mkdir -p /deps/z3/ &&  wget https://github.com/Z3Prover/z3/archive/z3-4.5.0.zip -O /deps/z3/z3.zip && \
+RUN mkdir -p /deps/z3/ &&  wget https://github.com/Z3Prover/z3/archive/z3-4.8.1.zip -O /deps/z3/z3.zip && \
         cd /deps/z3/ && unzip /deps/z3/z3.zip && \
-        ls /deps/z3 && mv /deps/z3/z3-z3-4.5.0/* /deps/z3/ &&  rm /deps/z3/z3.zip && \
-        python scripts/mk_make.py --python && cd build && make -j$(nproc) && make install
+        ls /deps/z3 && mv /deps/z3/z3-z3-4.8.1/* /deps/z3/ &&  rm /deps/z3/z3.zip && \
+        python scripts/mk_make.py -x --python && cd build && make -j$(nproc) && make install
 
 # Instsall geth from official geth image
 COPY --from=geth /usr/local/bin/evm /usr/local/bin/evm
