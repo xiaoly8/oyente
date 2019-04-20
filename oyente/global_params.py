@@ -54,3 +54,6 @@ GENERATE_TEST_CASES = 0
 
 # Run Oyente in parallel
 PARALLEL = 0
+
+# Dictionary of path id to gas usage mapping
+PATHS_GAS = {}

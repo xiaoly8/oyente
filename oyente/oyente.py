@@ -110,6 +110,12 @@ def analyze_solidity(input_type='solidity'):
     helper.rm_tmp_files()
 
     if global_params.WEB:
+        
+        if global_params.PATHS_GAS:
+            rst = {**results, 'path_gas': global_params.PATHS_GAS}
+        else:
+            rst = results
+
         six.print_(json.dumps(results))
     return exit_code
 

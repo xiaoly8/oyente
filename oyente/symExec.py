@@ -646,7 +646,13 @@ def sym_exec_block(params, block, pre_block, depth, func_call, current_func_name
         
         path_id = total_no_of_paths - 1
         if global_params.OUTPUT_PATH_GAS:
-            print("path no {}: gas usage {}".format(path_id, current_gas_used))
+            gas_info_output = "path no {}: gas usage {}".format(path_id, current_gas_used)
+            if global_params.WEB:
+                log.info(gas_info_output)
+                PATHS_GAS[path_id] = current_gas_used
+            else:
+                print(gas_info_output)
+
 
         if global_params.PRINT_PATHS is not False :
             log.debug("PATH " + str(path_id) + ": " + str(path_conditions_and_vars['path_condition']))
