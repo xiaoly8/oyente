@@ -128,8 +128,9 @@ def main():
     group = parser.add_mutually_exclusive_group(required=True)
 
     group.add_argument("-s",  "--source",    type=str, help="local source file name. Solidity by default. Use -b to process evm instead. Use stdin to read from stdin.")
-    group.add_argument("--target-contracts",    type=str, nargs=1, help="To specify the targeted smart contract names. If any has been specified, only them will be processed")
     group.add_argument("-ru", "--remoteURL", type=str, help="Get contract from remote URL. Solidity by default. Use -b to process evm instead.", dest="remote_URL")
+
+    parser.add_argument("--target-contracts",    type=str, nargs=1, help="To specify the targeted smart contract names. If any has been specified, only them will be processed")
 
     parser.add_argument("--version", action="version", version="oyente version 0.2.7 - Commonwealth")
 
