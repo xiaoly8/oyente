@@ -57,3 +57,6 @@ PARALLEL = 0
 
 # Dictionary of path id to gas usage mapping
 PATHS_GAS = {}
+
+# Iterable of targeted smart contract names
+TARGET_CONTRACTS = None
