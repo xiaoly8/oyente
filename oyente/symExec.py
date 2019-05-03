@@ -104,6 +104,7 @@ def initGlobalVars():
                 'parity_multisig_bug_2': [],
             }
         }
+        
     else:
         results = {
             'evm_code_coverage': '',
@@ -116,6 +117,9 @@ def initGlobalVars():
                 'reentrancy': False,
             }
         }
+    
+    if global_params.OUTPUT_PATH_GAS:
+        results['path_gas'] = {}
 
     global calls_affect_state
     calls_affect_state = {}
@@ -649,7 +653,7 @@ def sym_exec_block(params, block, pre_block, depth, func_call, current_func_name
             gas_info_output = "path no {}: gas usage {}".format(path_id, current_gas_used)
             if global_params.WEB:
                 log.info(gas_info_output)
-                global_params.PATHS_GAS[path_id] = current_gas_used
+                results['path_gas'][path_id] = current_gas_used
             else:
                 print(gas_info_output)
 

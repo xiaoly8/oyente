@@ -79,6 +79,7 @@ def analyze_bytecode():
 
 def run_solidity_analysis(inputs):
     results = {}
+
     exit_code = 0
 
     for inp in inputs:
