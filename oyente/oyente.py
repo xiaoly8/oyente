@@ -116,7 +116,7 @@ def analyze_solidity(input_type='solidity'):
         else:
             rst = results
 
-        six.print_(json.dumps(results))
+        six.print_(json.dumps(rst))
     return exit_code
 
 def main():
