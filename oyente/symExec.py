@@ -649,7 +649,7 @@ def sym_exec_block(params, block, pre_block, depth, func_call, current_func_name
             gas_info_output = "path no {}: gas usage {}".format(path_id, current_gas_used)
             if global_params.WEB:
                 log.info(gas_info_output)
-                PATHS_GAS[path_id] = current_gas_used
+                global_params.PATHS_GAS[path_id] = current_gas_used
             else:
                 print(gas_info_output)
 
