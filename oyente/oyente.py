@@ -126,6 +126,8 @@ def main():
 
     parser.add_argument("--version", action="version", version="oyente version 0.2.7 - Commonwealth")
 
+    parser.add_argument("-cfuncnames", "--target-functions", type=str, nargs='+', help="To specify the targeted smart contract function names. If any has been specified, only them will be processed")
+    
     parser.add_argument("-rmp", "--remap",          help="Remap directory paths", action="store", type=str)
     parser.add_argument("-t",   "--timeout",        help="Timeout for Z3 in ms.", action="store", type=int)
     parser.add_argument("-gl",  "--gaslimit",       help="Limit Gas", action="store", dest="gas_limit", type=int)
@@ -179,6 +181,7 @@ def main():
     global_params.CHECK_ASSERTIONS = 1 if args.assertion else 0
     global_params.DEBUG_MODE = 1 if args.debug else 0
     global_params.GENERATE_TEST_CASES = 1 if args.generate_test_cases else 0
+    global_params.TARGET_FUNCTIONS = args.target_functions
     global_params.PARALLEL = 1 if args.parallel else 0
 
     if args.depth_limit:
